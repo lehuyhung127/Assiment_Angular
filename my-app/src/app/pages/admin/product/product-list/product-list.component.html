@@ -2,50 +2,11 @@
   <p-toast></p-toast>
   <p-toolbar styleClass="mb-4 gap-2">
     <ng-template pTemplate="left">
-      <button
-        pButton
-        pRipple
-        label="Add Product"
-        class="p-button-success mr-2"
-        (click)="openNew()"
-      ></button>
+      <button pButton pRipple label="Add Product" class="p-button-success mr-2" (click)="openNew()"></button>
     </ng-template>
   </p-toolbar>
 
-  <!-- <p-table #dt [value]="products" [rows]="10" [paginator]="true">
-        <ng-template pTemplate="caption">
-            <div class="flex align-items-center justify-content-between">
-                <h5 class="m-0 text-center">Manage Products</h5>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="name" style="min-width:15rem">Name</th>
-                <th>Image</th>
-                <th pSortableColumn="price">Price</th>
-                <th>Creation date</th>
-                <th>Action</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>
-                    <img width="20%" src="{{product.img}}" alt="{{product.name}}">
-                </td>
-                <td>{{ product.price | currency: 'VND' }}</td>
-                <td>{{ product.createdAt }}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                        (click)="editProduct(product)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteProduct(product)"></button>
-                </td>
-                
-
-            </tr>
-        </ng-template>
-    </p-table> -->
+ 
   <caption>
     <div class="text-center text-uppercase">
       <h5 class="m-0r">Manage Products</h5>
@@ -68,11 +29,7 @@
           <td>{{ i + 1 }}</td>
           <td style="width: 20%">{{ product.name }}</td>
           <td style="width: 20%">
-            <img
-              class="img-fluid"
-              src="{{ product.img }}"
-              alt="{{ product.name }}"
-            />
+            <img class="img-fluid" src="{{ product.img }}" alt="{{ product.name }}" />
           </td>
           <td style="width: 20%">{{ product.price | currency : "VND" }}</td>
           <td style="width: 20%">{{ product.createdAt }}</td>
@@ -80,7 +37,7 @@
             <button class="btn btn-primary" (click)="editProduct(product)">
               <i class="pi pi-pencil"></i>
             </button>
-            <button class="btn btn-danger m-3" (click)="deleteProduct(product)">
+            <button class="btn btn-danger m-3"  (click)="deleteProduct(product)">
               <i class="pi pi-trash"></i>
             </button>
           </td>
@@ -89,90 +46,38 @@
     </tbody>
   </table>
 </div>
-<p-dialog
-  [(visible)]="productDialog"
-  [style]="{ width: '450px', 'background-color': 'red' }"
-  header="Product Details"
-  [modal]="true"
-  styleClass="p-fluid"
->
+<p-dialog [(visible)]="productDialog" [style]="{ width: '450px', 'background-color': 'red' }" header="Product Details"
+  [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="field">
       <label for="name">Name</label>
-      <input
-        type="text"
-        pInputText
-        id="name"
-        [(ngModel)]="product.name"
-        required
-        autofocus
-      />
-      <small class="p-error" *ngIf="submitted && !product.name"
-        >Name is required.</small
-      >
+      <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
+      <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small>
     </div>
 
     <div class="formgrid grid">
       <div class="field">
         <label for="price">Price</label>
-        <input
-          type="number"
-          min="0"
-          pInputText
-          id="price"
-          [(ngModel)]="product.price"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !product.price"
-          >price is required.</small
-        >
+        <input type="number" min="0" pInputText id="price" [(ngModel)]="product.price" required autofocus />
+        <small class="p-error" *ngIf="submitted && !product.price">price is required.</small>
       </div>
       <div class="field">
         <label for="img">Image</label>
-        <input
-          type="text"
-          pInputText
-          id="img"
-          [(ngModel)]="product.img"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !product.img"
-          >image is required.</small
-        >
+        <input type="text" pInputText id="img" [(ngModel)]="product.img" required autofocus />
+        <small class="p-error" *ngIf="submitted && !product.img">image is required.</small>
       </div>
       <div class="field">
         <label for="img">Description</label>
-        <input
-          type="text"
-          pInputText
-          id="description"
-          [(ngModel)]="product.description"
-          required
-          autofocus
-        />
-        <small class="p-error" *ngIf="submitted && !product.description"
-          >description is required.</small
-        >
+        <input type="text" pInputText id="description" [(ngModel)]="product.description" required autofocus />
+        <small class="p-error" *ngIf="submitted && !product.description">description is required.</small>
       </div>
     </div>
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      label="Cancel"
-      class="p-button-text"
-      (click)="hideDialog()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Yes"
-      class="p-button-text"
-      (click)="saveProduct()"
-    ></button>
+    <button pButton pRipple label="Cancel" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Yes" class="p-button-text" (click)="saveProduct()"></button>
   </ng-template>
 </p-dialog>
+
+<p-confirmDialog [style]="{ width: '550px' }"></p-confirmDialog>

@@ -36,12 +36,12 @@ export class ProductListComponent implements OnInit {
     this.productService.getCreat(product).subscribe(
       (response) => {
         // Xử lý khi tạo thành công
-        alert('Product Created Successfully');
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
       },
       (error) => {
         // Xử lý khi có lỗi
         console.error('An error occurred:', error);
-        alert('Failed to create product');
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to create product', life: 3000 });
       }
     );
   }
@@ -56,7 +56,16 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteSelectedProducts() {
-    alert('Bạn có muốn xóa không?');
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete the selected products?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.products = this.products.filter((val) => !this.selectedProducts?.includes(val));
+        this.selectedProducts = null;
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+      }
+    });
   }
 
   editProduct(product: IProduct) {
@@ -108,7 +117,7 @@ export class ProductListComponent implements OnInit {
           const index = this.findIndexById(this.product._id);
           if (index !== -1) {
             this.products[index] = this.product;
-            alert('Update Successful');
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Update Successful', life: 3000 });
             this.productDialog = false;
             this.product = {};
           }
@@ -118,7 +127,7 @@ export class ProductListComponent implements OnInit {
         this.productService.getCreat(this.product).subscribe(() => {
 
           this.products.push(this.product);
-          alert('Creat Successful');
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Creat Successful', life: 3000 });
           this.productDialog = false;
           this.product = {};
           location.reload();
@@ -148,6 +157,5 @@ export class ProductListComponent implements OnInit {
     }
     return id;
   }
-
 
 }

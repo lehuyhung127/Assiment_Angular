@@ -47,6 +47,17 @@
                                             <h5 class="fw-bolder">{{ product.name }}</h5>
                                         </a>
                                         <p class="fw-bolder">{{ product.price }}</p>
+                                        <p class="fw-bolder block-ellipsis" style="display: block;
+                                    display: -webkit-box;
+                                    max-width: 100%;
+                                    height: 43px;
+                                    margin: 0 auto;
+                                    font-size: 14px;
+                                    line-height: 1;
+                                    -webkit-line-clamp: 3;
+                                    -webkit-box-orient: vertical;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;">{{ product.description }}</p>
                                         <!-- Product price-->
                                     </div>
                                 </div>

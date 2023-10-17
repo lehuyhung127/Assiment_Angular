@@ -7,7 +7,7 @@ import { IProduct } from '../interface/product';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:8080/api'; // đặt biến này ở đây
+  private apiUrl = 'http://localhost:8080/api'; 
 
   constructor(private http: HttpClient) { }
   getAll(): Observable<any> {
